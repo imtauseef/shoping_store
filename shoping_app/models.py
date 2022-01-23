@@ -23,3 +23,5 @@ class Order(models.Model):
     state = models.CharField(max_length=200)
     zipcode = models.CharField(max_length=200)
     totalprice = models.CharField(max_length=200)
+
+    
