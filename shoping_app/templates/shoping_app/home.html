@@ -1,0 +1,55 @@
+{% extends 'shoping_app/base.html' %} {% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <form method="get" class="card card-sm">
+            <div class="card-body row no-gutters align-items-center">
+                <div class="col">
+                    <input type="text" name="item_name" class="form-control form-control-borderless" placeholder="Search for products">
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    {% for prod in all_products %}
+    <div class="col-md-3">
+        <div class="card">
+            <img src="{{ prod.image }}" alt="">
+            <div class="card-body">
+                <div id="n{{prod.id}}" class="card-title">{{ prod.title }}</div>
+                <div id="price{{prod.id}}" class="card-text">{{ prod.price }}</div>
+                <a class="btn btn-warning" href="/productdetail/{{ prod.id }}">VIEW</a>
+                <button id="{{prod.id}}" class="btn btn-warning atc" href="">ADD TO CART</button>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="row">
+    <div class="col-md-3 offset-md-4">
+        <ul class="pagination">
+            {% if all_products.has_previous %}
+            <li class="page-item">
+                <a class="page-link btn" href="?page={{ all_products.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+
+            <li class="page-item">
+                <a class="page-link btn" href="?page={{ all_products.number }}" active>Current</a>
+            </li>
+
+            {% if all_products.has_next %}
+            <li class="page-item">
+                <a class="page-link btn" href="?page={{ all_products.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+
+{% endblock content %}
